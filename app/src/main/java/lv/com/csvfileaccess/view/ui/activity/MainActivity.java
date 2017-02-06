@@ -1,22 +1,18 @@
-package lv.com.csvfileaccess.view.activity;
+package lv.com.csvfileaccess.view.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.io.InputStream;
-import java.util.List;
-
 import lv.com.csvfileaccess.R;
-import lv.com.csvfileaccess.model.csv.CSVFile;
-import lv.com.csvfileaccess.model.pojo.RowData;
+import lv.com.csvfileaccess.view.ui.fragment.ReadFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private ReadFragment readFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findResources();
         initializeResources();
+        setupFragmentView();
+    }
+
+    private void setupFragmentView() {
+        if (readFragment == null) {
+            readFragment = new ReadFragment();
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, readFragment).commit();
     }
 
     private void initializeResources() {
@@ -34,29 +38,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        readCSVSampleFromRaw();
-    }
-
-    private void readCSVSampleFromRaw() {
-        InputStream inputStream = getResources().openRawResource(R.raw.sample);
-        CSVFile csvFile = new CSVFile(inputStream);
-
-        List<RowData> rowDatas = csvFile.getDataList();
-        Log.e("test Row data", String.valueOf(rowDatas.size()));
-        int i = 0;
-        for (RowData rowData : rowDatas) {
-            i++;
-            if (rowData.getProd().isEmpty()) {
-                Log.e("test " + i, "empty field");
-                continue;
-            }
-            Log.e("test " + i, rowData.getProd());
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
