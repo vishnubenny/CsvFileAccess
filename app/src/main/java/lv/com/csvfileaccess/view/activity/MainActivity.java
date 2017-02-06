@@ -16,12 +16,22 @@ import lv.com.csvfileaccess.model.pojo.RowData;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        findResources();
+        initializeResources();
+    }
+
+    private void initializeResources() {
         setSupportActionBar(toolbar);
+    }
+
+    private void findResources() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
     @Override
