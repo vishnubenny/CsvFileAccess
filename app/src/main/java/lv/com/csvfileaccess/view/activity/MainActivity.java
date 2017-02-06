@@ -1,17 +1,13 @@
 package lv.com.csvfileaccess.view.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import lv.com.csvfileaccess.R;
@@ -38,15 +34,18 @@ public class MainActivity extends AppCompatActivity {
     private void readCSVSampleFromRaw() {
         InputStream inputStream = getResources().openRawResource(R.raw.sample);
         CSVFile csvFile = new CSVFile(inputStream);
-//        List scoreList = csvFile.read();
 
         List<RowData> rowDatas = csvFile.getDataList();
         Log.e("test Row data", String.valueOf(rowDatas.size()));
-        Log.e("test", rowDatas.get(0).getProd());
-
-//        String[] rowData = (String[]) scoreList.get(1);
-//        Log.e("test", rowData[2]);
-//        Log.e("testCount", String.valueOf(scoreList.size()));
+        int i = 0;
+        for (RowData rowData : rowDatas) {
+            i++;
+            if (rowData.getProd().isEmpty()) {
+                Log.e("test " + i, "empty field");
+                continue;
+            }
+            Log.e("test " + i, rowData.getProd());
+        }
     }
 
     @Override
