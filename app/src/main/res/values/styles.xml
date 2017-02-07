@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="AppTheme.Base" />
     <!-- Base application theme. -->
@@ -12,5 +12,28 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="style_head2_list">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/material_grey_850</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-condensed</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">6sp</item>
+        <item name="android:text">_fileName</item>
+    </style>
+
+    <style name="style_head3_list">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/material_grey_850</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-condensed</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">6sp</item>
+        <item name="android:paddingBottom">4sp</item>
+        <item name="android:text">_filePath</item>
+    </style>
 
 </resources>
