@@ -7,12 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import lv.com.csvfileaccess.R;
-import lv.com.csvfileaccess.view.ui.fragment.ListCSVfromStorage;
+import lv.com.csvfileaccess.view.ui.fragment.ListCSVfromStorageFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private ListCSVfromStorage listCSVfromStorage;
+    private ListCSVfromStorageFragment listCSVfromStorageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFragmentView() {
-        if (listCSVfromStorage == null) {
-            listCSVfromStorage = new ListCSVfromStorage();
+        if (listCSVfromStorageFragment == null) {
+            listCSVfromStorageFragment = new ListCSVfromStorageFragment();
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, listCSVfromStorage).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, listCSVfromStorageFragment).commit();
     }
 
     private void initializeResources() {

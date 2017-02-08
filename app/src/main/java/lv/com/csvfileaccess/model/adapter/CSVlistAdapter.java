@@ -2,15 +2,20 @@ package lv.com.csvfileaccess.model.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import lv.com.csvfileaccess.R;
+import lv.com.csvfileaccess.model.csv.CSVFile;
+import lv.com.csvfileaccess.model.pojo.RowData;
 
 public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder> {
     private final Context mContext;
@@ -29,9 +34,34 @@ public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder>
 
     @Override
     public void onBindViewHolder(CSVlistAdapter.VHolder holder, int position) {
-        File fileItem = csvFiles.get(position);
+        final File fileItem = csvFiles.get(position);
         holder.csvFileNameTextView.setText(fileItem.getName());
         holder.csvFilePathTextView.setText(fileItem.getAbsolutePath());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                test(fileItem.getAbsolutePath());
+            }
+        });
+    }
+
+    private void test(String fileItemAbsolutePath) {
+        try {
+            CSVFile csvFile = new CSVFile(new FileInputStream(fileItemAbsolutePath));
+            List<RowData> rowDatas = csvFile.getDataList();
+            Log.e("test Row data", String.valueOf(rowDatas.size()));
+            int i = 0;
+            for (RowData rowData : rowDatas) {
+                i++;
+                if (rowData.getProd().isEmpty()) {
+                    Log.e("test " + i, "empty field");
+                    continue;
+                }
+                Log.e("test " + i, rowData.getProd());
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("tag", e.toString(), e);
+        }
     }
 
     @Override
