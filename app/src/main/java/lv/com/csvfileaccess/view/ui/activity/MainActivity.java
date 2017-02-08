@@ -7,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import lv.com.csvfileaccess.R;
+import lv.com.csvfileaccess.model.utils.AppConstants;
+import lv.com.csvfileaccess.view.ui.fragment.ExpandedCSVFragment;
 import lv.com.csvfileaccess.view.ui.fragment.ListCSVfromStorageFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ListCSVfromStorageFragment listCSVfromStorageFragment;
+    private ExpandedCSVFragment expandedCSVFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,5 +62,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void launchExpandedCSVFragment(String absolutePath) {
+        if (expandedCSVFragment == null) {
+            expandedCSVFragment = new ExpandedCSVFragment();
+        }
+        Bundle extraBundle = new Bundle();
+        extraBundle.putString(AppConstants.SELECTED_FILE_ABSOLUTE_PATH, absolutePath);
+        expandedCSVFragment.setArguments(extraBundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, expandedCSVFragment).commit();
     }
 }

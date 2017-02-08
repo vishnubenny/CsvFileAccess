@@ -1,11 +1,14 @@
 package lv.com.csvfileaccess.model.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -16,6 +19,7 @@ import java.util.List;
 import lv.com.csvfileaccess.R;
 import lv.com.csvfileaccess.model.csv.CSVFile;
 import lv.com.csvfileaccess.model.pojo.RowData;
+import lv.com.csvfileaccess.view.ui.activity.MainActivity;
 
 public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder> {
     private final Context mContext;
@@ -37,10 +41,11 @@ public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder>
         final File fileItem = csvFiles.get(position);
         holder.csvFileNameTextView.setText(fileItem.getName());
         holder.csvFilePathTextView.setText(fileItem.getAbsolutePath());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.topParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                test(fileItem.getAbsolutePath());
+//                test(fileItem.getAbsolutePath());
+                ((MainActivity) mContext).launchExpandedCSVFragment(fileItem.getAbsolutePath());
             }
         });
     }
@@ -70,13 +75,15 @@ public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder>
     }
 
     class VHolder extends RecyclerView.ViewHolder {
+        private LinearLayout topParentLayout;
         private TextView csvFileNameTextView;
         private TextView csvFilePathTextView;
 
         VHolder(View itemView) {
             super(itemView);
-            csvFileNameTextView = (TextView) itemView.findViewById(R.id.csv_file_name_text_view);
-            csvFilePathTextView = (TextView) itemView.findViewById(R.id.csv_file_path_text_view);
+            topParentLayout = (LinearLayout) itemView.findViewById(R.id.top_parent_layout);
+            csvFileNameTextView = (TextView) topParentLayout.findViewById(R.id.csv_file_name_text_view);
+            csvFilePathTextView = (TextView) topParentLayout.findViewById(R.id.csv_file_path_text_view);
         }
     }
 }
