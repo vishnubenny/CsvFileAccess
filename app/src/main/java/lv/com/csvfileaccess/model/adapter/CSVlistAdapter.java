@@ -44,29 +44,9 @@ public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder>
         holder.topParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                test(fileItem.getAbsolutePath());
                 ((MainActivity) mContext).launchExpandedCSVFragment(fileItem.getAbsolutePath());
             }
         });
-    }
-
-    private void test(String fileItemAbsolutePath) {
-        try {
-            CSVFile csvFile = new CSVFile(new FileInputStream(fileItemAbsolutePath));
-            List<RowData> rowDatas = csvFile.getDataList();
-            Log.e("test Row data", String.valueOf(rowDatas.size()));
-            int i = 0;
-            for (RowData rowData : rowDatas) {
-                i++;
-                if (rowData.getProd().isEmpty()) {
-                    Log.e("test " + i, "empty field");
-                    continue;
-                }
-                Log.e("test " + i, rowData.getProd());
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("tag", e.toString(), e);
-        }
     }
 
     @Override

@@ -26,7 +26,7 @@
 
     <style name="style_head3_list">
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/material_grey_850</item>
+        <item name="android:textColor">@color/material_grey_800</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-condensed</item>
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
@@ -34,6 +34,16 @@
         <item name="android:paddingTop">6sp</item>
         <item name="android:paddingBottom">4sp</item>
         <item name="android:text">_filePath</item>
+    </style>
+
+    <style name="style_list_item_row_data">
+        <item name="android:text">Sample\nData\nListItem</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/material_grey_800</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-condensed</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">4sp</item>
+        <item name="android:paddingBottom">2sp</item>
     </style>
 
 </resources>

@@ -3,8 +3,6 @@ package lv.com.csvfileaccess.view.ui.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import lv.com.csvfileaccess.R;
 import lv.com.csvfileaccess.model.utils.AppConstants;
@@ -15,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ListCSVfromStorageFragment listCSVfromStorageFragment;
-    private ExpandedCSVFragment expandedCSVFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,36 +38,21 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            return;
         }
-
-        return super.onOptionsItemSelected(item);
+        this.finish();
     }
 
     public void launchExpandedCSVFragment(String absolutePath) {
-        if (expandedCSVFragment == null) {
-            expandedCSVFragment = new ExpandedCSVFragment();
-        }
+        ExpandedCSVFragment expandedCSVFragment = new ExpandedCSVFragment();
         Bundle extraBundle = new Bundle();
         extraBundle.putString(AppConstants.SELECTED_FILE_ABSOLUTE_PATH, absolutePath);
         expandedCSVFragment.setArguments(extraBundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, expandedCSVFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, expandedCSVFragment).
+                addToBackStack(AppConstants.SELECTED_FILE_OPEN).commit();
     }
 }

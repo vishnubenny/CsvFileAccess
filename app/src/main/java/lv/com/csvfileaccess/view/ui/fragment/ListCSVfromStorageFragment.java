@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,6 +38,8 @@ public class ListCSVfromStorageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list_csv_from_storage, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -47,7 +52,29 @@ public class ListCSVfromStorageFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new LookForCSVAsync().execute();
+        handleOnResume();
+    }
+
+    private void handleOnResume() {
+        if (csVlistAdapter == null)
+            new LookForCSVAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        else
+            mRecyclerView.setAdapter(csVlistAdapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_list_csv_fragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh_now) {
+            new LookForCSVAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            return true;
+        }
+        return false;
     }
 
     private class LookForCSVAsync extends AsyncTask<Object, Object, List<File>> {

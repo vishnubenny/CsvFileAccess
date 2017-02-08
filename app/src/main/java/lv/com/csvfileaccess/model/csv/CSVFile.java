@@ -1,5 +1,7 @@
 package lv.com.csvfileaccess.model.csv;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,17 +39,14 @@ public class CSVFile {
         return resultList;
     }
 
-    public List<RowData> getDataList() {
-        List<RowData> rowDatas = new ArrayList<>();
+    public List<String> getDataList() {
+        List<String> stringDataList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
-                RowData rowData = new RowData();
-                rowData.setId(Integer.parseInt(csvLine.split(",")[0]));
-                rowData.setProd(csvLine.split(",")[1].replace("\"", ""));
-                rowData.setOwn(csvLine.split(",")[2]);
-                rowDatas.add(rowData);
+                String stringData = csvLine.replaceAll(",", "\n");
+                stringDataList.add(stringData);
             }
         } catch (IOException ex) {
             throw new RuntimeException("Error in reading CSV file: " + ex);
@@ -58,6 +57,6 @@ public class CSVFile {
                 throw new RuntimeException("Error while closing input stream: " + e);
             }
         }
-        return rowDatas;
+        return stringDataList;
     }
 }
