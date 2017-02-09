@@ -1,0 +1,9 @@
+
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(¸‰ï°úÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(·ÿñÔýÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(¸‰ï°úÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(·ÿñÔýÿÿÿÿ
+Nsquid:S1143"4Remove this throw statement from this finally block.(·ÿñÔýÿÿÿÿ
+Nsquid:S1143"4Remove this throw statement from this finally block.(·ÿñÔýÿÿÿÿ
+Wsquid:S1163"=Refactor this code to not throw exceptions in finally blocks.(·ÿñÔýÿÿÿÿ
+Wsquid:S1163"=Refactor this code to not throw exceptions in finally blocks.(·ÿñÔýÿÿÿÿ

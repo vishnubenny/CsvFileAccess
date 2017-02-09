@@ -47,12 +47,13 @@ public class MainActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public void launchExpandedCSVFragment(String absolutePath) {
+    public void launchExpandedCSVFragment(String absolutePath, String fileName) {
         ExpandedCSVFragment expandedCSVFragment = new ExpandedCSVFragment();
         Bundle extraBundle = new Bundle();
         extraBundle.putString(AppConstants.SELECTED_FILE_ABSOLUTE_PATH, absolutePath);
         expandedCSVFragment.setArguments(extraBundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, expandedCSVFragment).
                 addToBackStack(AppConstants.SELECTED_FILE_OPEN).commit();
+        toolbar.setTitle(fileName);
     }
 }

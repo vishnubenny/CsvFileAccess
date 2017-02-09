@@ -4,7 +4,7 @@
     tools:context="lv.com.csvfileaccess.view.ui.activity.MainActivity">
     <item
         android:id="@+id/action_refresh_now"
-        android:orderInCategory="100"
+        android:icon="@drawable/action_refresh_now"
         android:title="@string/action_refresh"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 </menu>

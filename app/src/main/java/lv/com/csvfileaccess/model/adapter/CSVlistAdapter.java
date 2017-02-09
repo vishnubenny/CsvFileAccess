@@ -44,7 +44,7 @@ public class CSVlistAdapter extends RecyclerView.Adapter<CSVlistAdapter.VHolder>
         holder.topParentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) mContext).launchExpandedCSVFragment(fileItem.getAbsolutePath());
+                ((MainActivity) mContext).launchExpandedCSVFragment(fileItem.getAbsolutePath(),fileItem.getName());
             }
         });
     }

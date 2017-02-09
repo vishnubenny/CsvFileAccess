@@ -1,0 +1,10 @@
+
+b
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(„õëµ
+:squid:S2129" Remove this "String" constructor(İ¶Ÿùÿÿÿÿ
+wsquid:S1450"]Remove the "mLayoutManager" field and declare it as a local variable in the relevant methods.(Ø„îÛøÿÿÿÿ
+r
+squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(Ç½Œâıÿÿÿÿ
+osquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(½û°Ğúÿÿÿÿ
+jsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(©Ìä
+Msquid:S1197"8Move the array designator from the variable to the type.(Ïô•±
